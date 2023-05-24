@@ -15,7 +15,7 @@ export type NavigationItem = {
 };
 
 export default function Layout({ children }: { children: React.ReactElement }) {
-  const [menuCollapsed, setMenuCollapsed] = useState(true);
+  const [menuCollapsed, setMenuCollapsed] = useState(false);
   const { userOrgs } = useUser();
 
   const navigation: NavigationItem[] = [

@@ -10,6 +10,7 @@ import { ChevronIcon, DoubleSlashBrandIcon, FullBrandIcon } from "../icons";
 import { NavigationItem } from "../layouts/layout";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import Gravatar from 'react-gravatar';
 
 type Props = {
   menuCollapsed: boolean;
@@ -41,7 +42,7 @@ const DesktopSidebarNav: React.FC<Props> = ({
   navigation,
 }) => {
   const { user, fullName } = useUser();
-  const [theme, setTheme] = useState(themes[0]);
+  const [theme, setTheme] = useState(("theme" in localStorage)? localStorage.theme : themes[0]);
   const { t } = useTranslation();
   const { appiconUrl, logoUrl } = config.env;
 
@@ -157,7 +158,7 @@ const DesktopSidebarNav: React.FC<Props> = ({
                 <Popover.Button className="outline-none">
                   <div className="flex items-center">
                     <div className="mx-auto grid h-8 w-8 place-items-center rounded-full bg-white text-sm font-semibold dark:bg-zinc-400">
-                      {fullName().substring(0, 1)}
+                      <Gravatar email={user?.email} className="rounded-full" />
                     </div>
                     {!menuCollapsed && (
                       <p className="ml-2 text-sm font-semibold dark:text-white">
